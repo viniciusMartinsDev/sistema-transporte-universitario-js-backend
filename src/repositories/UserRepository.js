@@ -10,4 +10,20 @@ module.exports = {
 
 		return createdUser
 	},
+
+	async getUsers() {
+		const getUsers = await prisma.users.findMany()
+
+		return getUsers
+	},
+
+	async getUser(id) {
+		const getUser = await prisma.users.findUnique({
+			where: {
+				id: id
+			}
+		})
+
+		return getUser
+	}
 }
