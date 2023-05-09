@@ -4,6 +4,7 @@ CREATE TABLE `USUARIOS` (
     `nome` VARCHAR(191) NOT NULL,
     `sobrenome` VARCHAR(191) NOT NULL,
     `rg` VARCHAR(191) NOT NULL,
+    `cpf` VARCHAR(191) NOT NULL,
     `email` VARCHAR(191) NOT NULL,
     `senha` VARCHAR(191) NOT NULL,
 

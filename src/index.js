@@ -1,13 +1,13 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 
 const app = express()
+const userRoute = require('./routes/UserRoute')
 
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
-const routeTeste = require('./routes/teste')
-
-app.use(routeTeste)
+app.use(userRoute)
 
 app.listen(3000)
 console.log('Servidor iniciado')
