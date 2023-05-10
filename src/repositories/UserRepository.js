@@ -4,7 +4,7 @@ const prisma = new PrismaClient()
 
 module.exports = {
 	async createUser(user) {
-		const createdUser = await prisma.users.create({
+		const createdUser = await prisma.usuario.create({
 			data: user,
 		})
 
@@ -12,13 +12,13 @@ module.exports = {
 	},
 
 	async getUsers() {
-		const getUsers = await prisma.users.findMany()
+		const getUsers = await prisma.usuario.findMany()
 
 		return getUsers
 	},
 
 	async getUser(id) {
-		const getUser = await prisma.users.findUnique({
+		const getUser = await prisma.usuario.findUnique({
 			where: {
 				id,
 			},
@@ -28,7 +28,7 @@ module.exports = {
 	},
 
 	async updateUser(id, data) {
-		const updateUser = await prisma.users.update({
+		const updateUser = await prisma.usuario.update({
 			where: {
 				id,
 			},
@@ -39,7 +39,7 @@ module.exports = {
 	},
 
 	async deleteUser(id) {
-		const deleteUser = await prisma.users.delete({
+		const deleteUser = await prisma.usuario.delete({
 			where: {
 				id,
 			},

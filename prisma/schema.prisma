@@ -10,7 +10,7 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Users {
+model Usuario {
     id        Int    @id @default(autoincrement())
     nome      String
     sobrenome String
@@ -19,5 +19,23 @@ model Users {
     email     String
     senha     String
 
+    transportes Transporte[]
+
     @@map("USUARIOS")
+}
+
+model Transporte {
+    id Int @id @default(autoincrement())
+
+    placa                String
+    renavam              String
+    numPoltronas         String
+    numPoltronasOcupadas String
+    numPoltronasLivres   String
+    modelo               String
+    marcas               String
+    Usuario              Usuario? @relation(fields: [usuarioId], references: [id])
+    usuarioId            Int?
+
+    @@map("TRANSPORTES")
 }
