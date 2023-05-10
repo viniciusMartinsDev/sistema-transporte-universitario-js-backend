@@ -9,5 +9,11 @@ module.exports = {
 	},
 	getUser(id) {
 		return userRepository.getUser(id)
-	}
+	},
+	updateUser(id, data) {
+		return userRepository.updateUser(id, data)
+	},
+	deleteUser(id) {
+		return userRepository.deleteUser(id)
+	},
 }

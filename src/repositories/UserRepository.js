@@ -20,10 +20,31 @@ module.exports = {
 	async getUser(id) {
 		const getUser = await prisma.users.findUnique({
 			where: {
-				id: id
-			}
+				id,
+			},
 		})
 
 		return getUser
-	}
+	},
+
+	async updateUser(id, data) {
+		const updateUser = await prisma.users.update({
+			where: {
+				id,
+			},
+			data,
+		})
+
+		return updateUser
+	},
+
+	async deleteUser(id) {
+		const deleteUser = await prisma.users.delete({
+			where: {
+				id,
+			},
+		})
+
+		return deleteUser
+	},
 }
