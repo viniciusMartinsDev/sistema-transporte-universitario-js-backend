@@ -12,28 +12,14 @@ module.exports = {
 	},
 	async create(req, res) {
 		try {
-			const {
-				placa,
-				renavam,
-				numPoltronas,
-				numPoltronasOcupadas,
-				numPoltronasLivres,
-				modelo,
-				marcas,
-				usuarioId,
-			} = req.body
+			const dataTransport = req.body
+			const { usuarioId } = req.body
 			const id = Number(usuarioId)
+
 			const transport = {
-				placa,
-				renavam,
-				numPoltronas,
-				numPoltronasOcupadas,
-				numPoltronasLivres,
-				modelo,
-				marcas,
+				...dataTransport,
 				usuarioId: id,
 			}
-
 			const createdTransport = await TransportService.createTransport(transport)
 
 			res.status(200).send(createdTransport)
