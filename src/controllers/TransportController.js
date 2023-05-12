@@ -10,6 +10,16 @@ module.exports = {
 			res.send(error)
 		}
 	},
+	async show(req, res) {
+		try {
+			const { id } = req.params
+			const transport = await TransportService.getUniqueTransport(Number(id))
+
+			res.status(200).send(transport)
+		} catch (error) {
+			res.send(error)
+		}
+	},
 	async create(req, res) {
 		try {
 			const dataTransport = req.body
