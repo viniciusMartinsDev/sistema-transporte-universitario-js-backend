@@ -23,24 +23,21 @@ module.exports = {
 	async create(req, res) {
 		try {
 			const dataTransport = req.body
-			const { usuarioId } = req.body
-			const id = Number(usuarioId)
-
-			const transport = {
-				...dataTransport,
-				usuarioId: id,
-			}
-			const createdTransport = await transportService.createTransport(transport)
+			const createdTransport = await transportService.createTransport(dataTransport)
 
 			res.status(200).send(createdTransport)
 		} catch (error) {
 			res.status(500).send(error)
 		}
 	},
-
 	async update(req, res) {
 		try {
+			const { id } = req.params
+			const data = req.body
 
+			const updatedTransport = await transportService.updateTransport(Number(id), data)
+
+			res.status(200).send(updatedTransport)
 		} catch (error) {
 			res.status(500).send(error)
 		}

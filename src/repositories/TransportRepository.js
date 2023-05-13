@@ -22,6 +22,16 @@ module.exports = {
 
 		return createdTransport
 	},
+	async updateTransport(id, data) {
+		const updatedTransport = await prisma.transporte.update({
+			where: {
+				id,
+			},
+			data,
+		})
+
+		return updatedTransport
+	},
 	async deleteTransport(id) {
 		const deleteTransport = await prisma.transporte.delete({
 			where: {
