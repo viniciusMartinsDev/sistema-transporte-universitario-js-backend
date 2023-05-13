@@ -10,4 +10,10 @@ module.exports = {
 	createPassenger(pasenger) {
 		return passengerRepository.createPassenger(pasenger)
 	},
+	updatePassenger(id, data) {
+		return passengerRepository.updatePassenger(id, data)
+	},
+	deletePassenger(id) {
+		return passengerRepository.deletePassenger(id)
+	},
 }

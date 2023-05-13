@@ -26,4 +26,27 @@ module.exports = {
 			res.status(500).send(error)
 		}
 	},
+	async update(req, res) {
+		try {
+			const { id } = req.params
+			const data = req.body
+
+			const updatedPassenger = await passengerService.updatePassenger(Number(id), data)
+
+			res.status(200).send(updatedPassenger)
+		} catch (error) {
+			res.status(500).send(error)
+		}
+	},
+	async delete(req, res) {
+		try {
+			const { id } = req.params
+
+			await passengerService.deletePassenger(Number(id))
+
+			res.status(200).send()
+		} catch (error) {
+			res.status(500).send(error)
+		}
+	},
 }
