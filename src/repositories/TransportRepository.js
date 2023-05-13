@@ -7,7 +7,7 @@ module.exports = {
 		const getTransports = await prisma.transporte.findMany()
 		return getTransports
 	},
-	async getUniqueTransport(id) {
+	async findById(id) {
 		const getUniqueTransport = await prisma.transporte.findUnique({
 			where: {
 				id,

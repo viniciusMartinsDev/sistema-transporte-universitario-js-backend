@@ -4,8 +4,8 @@ module.exports = {
 	getTransports() {
 		return transportRepository.getTransports()
 	},
-	getUniqueTransport(id) {
-		return transportRepository.getUniqueTransport(id)
+	findById(id) {
+		return transportRepository.findById(id)
 	},
 	createTransport(transport) {
 		return transportRepository.createTransport(transport)

@@ -13,7 +13,7 @@ module.exports = {
 	async show(req, res) {
 		try {
 			const { id } = req.params
-			const transport = await transportService.getUniqueTransport(Number(id))
+			const transport = await transportService.findById(Number(id))
 
 			res.status(200).send(transport)
 		} catch (error) {
