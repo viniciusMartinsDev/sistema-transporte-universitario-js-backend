@@ -15,11 +15,12 @@ model Usuario {
     nome      String
     sobrenome String
     rg        String
-    cpf       String
-    email     String
+    cpf       String @unique
+    email     String @unique
     senha     String
 
     transportes Transporte[]
+    passageiros Passageiro[]
 
     @@map("USUARIOS")
 }
@@ -37,5 +38,19 @@ model Transporte {
     Usuario              Usuario? @relation(fields: [usuarioId], references: [id])
     usuarioId            Int?
 
+    passageiros Passageiro[]
+
     @@map("TRANSPORTES")
+}
+
+model Passageiro {
+    id           Int         @id @default(autoincrement())
+    assento      String
+    status       Boolean
+    Usuario      Usuario?    @relation(fields: [usuarioId], references: [id])
+    usuarioId    Int?
+    Transporte   Transporte? @relation(fields: [transporteId], references: [id])
+    transporteId Int?
+
+    @@map("PASSAGEIROS")
 }
