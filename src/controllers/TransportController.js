@@ -1,23 +1,23 @@
-const TransportService = require('../services/TransportService')
+const transportService = require('../services/TransportService')
 
 module.exports = {
 	async index(req, res) {
 		try {
-			const transports = await TransportService.getTransports()
+			const transports = await transportService.getTransports()
 
 			res.status(200).send(transports)
 		} catch (error) {
-			res.send(error)
+			res.status(500).send(error)
 		}
 	},
 	async show(req, res) {
 		try {
 			const { id } = req.params
-			const transport = await TransportService.getUniqueTransport(Number(id))
+			const transport = await transportService.getUniqueTransport(Number(id))
 
 			res.status(200).send(transport)
 		} catch (error) {
-			res.send(error)
+			res.status(500).send(error)
 		}
 	},
 	async create(req, res) {
@@ -30,11 +30,30 @@ module.exports = {
 				...dataTransport,
 				usuarioId: id,
 			}
-			const createdTransport = await TransportService.createTransport(transport)
+			const createdTransport = await transportService.createTransport(transport)
 
 			res.status(200).send(createdTransport)
 		} catch (error) {
-			res.send(error)
+			res.status(500).send(error)
+		}
+	},
+
+	async update(req, res) {
+		try {
+
+		} catch (error) {
+			res.status(500).send(error)
+		}
+	},
+	async delete(req, res) {
+		try {
+			const { id } = req.params
+
+			await transportService.deleteTransport(Number(id))
+
+			res.status(200).send('Transporte deletado')
+		} catch (error) {
+			res.status(500).send(error)
 		}
 	},
 }

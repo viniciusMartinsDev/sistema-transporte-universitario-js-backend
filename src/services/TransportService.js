@@ -10,4 +10,7 @@ module.exports = {
 	createTransport(transport) {
 		return transportRepository.createTransport(transport)
 	},
+	deleteTransport(id) {
+		return transportRepository.deleteTransport(id)
+	},
 }

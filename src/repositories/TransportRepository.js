@@ -22,4 +22,13 @@ module.exports = {
 
 		return createdTransport
 	},
+	async deleteTransport(id) {
+		const deleteTransport = await prisma.transporte.delete({
+			where: {
+				id,
+			},
+		})
+
+		return deleteTransport
+	},
 }
