@@ -28,13 +28,12 @@ model Usuario {
 model Transporte {
     id Int @id @default(autoincrement())
 
-    placa                String
+    placa                String @unique
     renavam              String
-    numPoltronas         String
-    numPoltronasOcupadas String
-    numPoltronasLivres   String
+    numPoltronas         Int
+    numPoltronasLivres   Int
     modelo               String
-    marcas               String
+    marca                String
     Usuario              Usuario? @relation(fields: [usuarioId], references: [id])
     usuarioId            Int?
 
