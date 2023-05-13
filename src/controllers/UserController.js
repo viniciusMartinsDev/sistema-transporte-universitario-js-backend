@@ -1,9 +1,9 @@
-const UserService = require('../services/UserService')
+const userService = require('../services/UserService')
 
 module.exports = {
 	async index(req, res) {
 		try {
-			const getUsers = await UserService.getUsers()
+			const getUsers = await userService.getUsers()
 
 			res.status(200).send(getUsers)
 		} catch (error) {
@@ -15,7 +15,7 @@ module.exports = {
 		try {
 			const { id } = req.params
 
-			const user = await UserService.getUser(Number(id))
+			const user = await userService.getUser(Number(id))
 			res.status(200).send(user)
 		} catch (error) {
 			res.send(error)
@@ -37,7 +37,7 @@ module.exports = {
 				senha,
 			}
 
-			const createdUser = await UserService.createUser(user)
+			const createdUser = await userService.createUser(user)
 
 			res.status(200).send(createdUser)
 		} catch (error) {
@@ -50,7 +50,7 @@ module.exports = {
 			const { id } = req.params
 			const data = req.body
 
-			const updateUser = await UserService.updateUser(Number(id), data)
+			const updateUser = await userService.updateUser(Number(id), data)
 
 			res.status(200).send(updateUser)
 		} catch (error) {
@@ -62,7 +62,7 @@ module.exports = {
 		try {
 			const { id } = req.params
 
-			await UserService.deleteUser(Number(id))
+			await userService.deleteUser(Number(id))
 
 			res.status(200)
 		} catch (error) {
