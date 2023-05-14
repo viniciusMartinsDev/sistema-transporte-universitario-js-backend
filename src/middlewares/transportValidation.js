@@ -13,7 +13,7 @@ module.exports = async (req, res, next) => {
 	const transport = Joi.object({
 		placa: Joi.string()
 			.min(7)
-			.pattern(/^[0-9]+$/)
+			.pattern(/^[a-zA-Z0-9]+$/)
 			.required(),
 
 		renavam: Joi.string()
