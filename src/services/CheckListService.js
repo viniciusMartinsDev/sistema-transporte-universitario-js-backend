@@ -10,4 +10,10 @@ module.exports = {
 	newCheckList(checkList) {
 		return checkListRepository.createCheckList(checkList)
 	},
+	updateCheckList(id, data) {
+		return checkListRepository.updateCheckList(id, data)
+	},
+	deleteCheckList(id) {
+		return checkListRepository.deleteCheckList(id)
+	},
 }

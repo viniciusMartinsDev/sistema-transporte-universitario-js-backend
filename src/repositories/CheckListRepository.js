@@ -23,4 +23,21 @@ module.exports = {
 
 		return createdCheckList
 	},
+	async updateCheckList(id, data) {
+		const updatedCheckList = await prisma.listaControle.update({
+			where: {
+				id,
+			},
+			data,
+		})
+
+		return updatedCheckList
+	},
+	async deleteCheckList(id) {
+		const deletedCheckList = await prisma.listaControle.delete({
+			where: { id },
+		})
+
+		return deletedCheckList
+	},
 }
