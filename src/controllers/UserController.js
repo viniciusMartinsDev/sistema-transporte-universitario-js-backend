@@ -7,7 +7,7 @@ module.exports = {
 
 			res.status(200).send(getUsers)
 		} catch (error) {
-			res.send(error)
+			res.status(500).send(error)
 		}
 	},
 
@@ -18,7 +18,7 @@ module.exports = {
 			const user = await userService.getUser(Number(id))
 			res.status(200).send(user)
 		} catch (error) {
-			res.send(error)
+			res.status(500).send(error)
 		}
 	},
 
@@ -41,7 +41,7 @@ module.exports = {
 
 			res.status(200).send(createdUser)
 		} catch (error) {
-			res.send(error)
+			res.status(500).send(error)
 		}
 	},
 
@@ -54,7 +54,7 @@ module.exports = {
 
 			res.status(200).send(updateUser)
 		} catch (error) {
-			res.send(error)
+			res.status(500).send(error)
 		}
 	},
 
@@ -66,7 +66,7 @@ module.exports = {
 
 			res.status(200)
 		} catch (error) {
-			res.send(error)
+			res.status(500).send(error)
 		}
 	},
 }
