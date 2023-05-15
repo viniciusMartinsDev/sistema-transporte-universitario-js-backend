@@ -7,6 +7,9 @@ module.exports = {
 	findById(id) {
 		return transportRepository.findById(id)
 	},
+	getTransportsByFilter(where) {
+		return transportRepository.getTransportsByFilter(where)
+	},
 	createTransport(transport) {
 		return transportRepository.createTransport(transport)
 	},

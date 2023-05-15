@@ -2,6 +2,9 @@ const Joi = require('joi')
 
 module.exports = async (req, res, next) => {
 	const {
+		saida,
+		destino,
+		periodo,
 		placa,
 		renavam,
 		numPoltronas,
@@ -11,6 +14,7 @@ module.exports = async (req, res, next) => {
 	} = req.body
 
 	const transport = Joi.object({
+
 		placa: Joi.string()
 			.min(7)
 			.pattern(/^[a-zA-Z0-9]+$/)
@@ -35,10 +39,24 @@ module.exports = async (req, res, next) => {
 			.min(3)
 			.required(),
 
+		saida: Joi.string()
+			.min(7)
+			.required(),
+
+		destino: Joi.string()
+			.min(7)
+			.required(),
+
+		periodo: Joi.string()
+			.min(7)
+			.required(),
 	})
 
 	try {
 		await transport.validateAsync({
+			saida,
+			destino,
+			periodo,
 			placa,
 			renavam,
 			numPoltronas,

@@ -6,6 +6,7 @@ const TransportController = require('../controllers/TransportController')
 const router = express.Router()
 
 router.get('/transports', TransportController.index)
+router.get('/transports/filter', TransportController.filter)
 router.get('/transports/:id', TransportController.show)
 router.post('/transports', transportValidation, TransportController.create)
 router.put('/transports/:id', TransportController.update)

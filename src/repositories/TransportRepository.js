@@ -15,6 +15,16 @@ module.exports = {
 		})
 		return getUniqueTransport
 	},
+	async getTransportsByFilter(where) {
+		const getTransportsByFilter = await prisma
+			.$queryRaw`SELECT * FROM TRANSPORTES WHERE ( destino = ${where.destino} OR ${where.destino} IS NULL )
+				AND (saida = ${where.saida} OR ${where.saida} IS NULL)
+				AND (periodo = ${where.periodo} OR ${where.periodo} IS NULL)
+				`
+
+		return getTransportsByFilter
+	},
+
 	async createTransport(transport) {
 		const createdTransport = await prisma.transporte.create({
 			data: transport,
