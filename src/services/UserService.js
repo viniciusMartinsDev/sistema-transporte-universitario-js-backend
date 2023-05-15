@@ -1,14 +1,19 @@
 const userRepository = require('../repositories/UserRepository')
+const cryptography = require('../utils/Cryptography')
 
 module.exports = {
 	createUser(user) {
-		return userRepository.createUser(user)
+		const createdUser = {
+			...user,
+			senha: cryptography.encrypt(user.senha),
+		}
+		return userRepository.createUser(createdUser)
 	},
 	getUsers() {
 		return userRepository.getUsers()
 	},
-	getUser(id) {
-		return userRepository.getUser(id)
+	getUserById(id) {
+		return userRepository.getUserById(id)
 	},
 	updateUser(id, data) {
 		return userRepository.updateUser(id, data)

@@ -7,7 +7,6 @@ module.exports = {
 		const createdUser = await prisma.usuario.create({
 			data: user,
 		})
-
 		return createdUser
 	},
 
@@ -17,7 +16,7 @@ module.exports = {
 		return getUsers
 	},
 
-	async getUser(id) {
+	async getUserById(id) {
 		const getUser = await prisma.usuario.findUnique({
 			where: {
 				id,
@@ -25,6 +24,36 @@ module.exports = {
 		})
 
 		return getUser
+	},
+
+	async getUserByEmail(email) {
+		const getUserByEmail = await prisma.usuario.findUnique({
+			where: {
+				email,
+			},
+		})
+
+		return getUserByEmail
+	},
+
+	async getUserByCpf(cpf) {
+		const getUserByCpf = await prisma.usuario.findUnique({
+			where: {
+				cpf,
+			},
+		})
+
+		return getUserByCpf
+	},
+
+	async getUserByRg(rg) {
+		const getUserByRg = await prisma.usuario.findUnique({
+			where: {
+				rg,
+			},
+		})
+
+		return getUserByRg
 	},
 
 	async updateUser(id, data) {

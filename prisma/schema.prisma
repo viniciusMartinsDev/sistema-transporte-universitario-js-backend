@@ -14,7 +14,7 @@ model Usuario {
     id        Int    @id @default(autoincrement())
     nome      String
     sobrenome String
-    rg        String
+    rg        String @unique
     cpf       String @unique
     email     String @unique
     senha     String
