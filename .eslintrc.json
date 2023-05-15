@@ -11,6 +11,7 @@
 	},
 	"rules": {
 		"no-tabs": "off",
+		"no-template-curly-in-string": "off",
 		"indent": [
 			"error",
 			"tab"
