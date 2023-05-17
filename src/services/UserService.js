@@ -13,12 +13,12 @@ module.exports = {
 		return userRepository.getUsers()
 	},
 	getUserById(id) {
-		return userRepository.getUserById(id)
+		return userRepository.getUserById(Number(id))
 	},
 	updateUser(id, data) {
-		return userRepository.updateUser(id, data)
+		return userRepository.updateUser(Number(id), data)
 	},
 	deleteUser(id) {
-		return userRepository.deleteUser(id)
+		return userRepository.deleteUser(Number(id))
 	},
 }
