@@ -13,7 +13,9 @@ app.use(express.json())
 
 app.use(loginRoute)
 app.use(userRoute)
+
 app.use(validateUser)
+
 app.use(transportRoute)
 app.use(passengerRoute)
 app.use(checkListRoute)
