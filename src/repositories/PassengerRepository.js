@@ -8,6 +8,17 @@ module.exports = {
 
 		return getPassengers
 	},
+
+	async getPassengersByTransport(transporteId) {
+		const passengers = await prisma.passageiro.findMany({
+			where: {
+				transporteId,
+			},
+		})
+
+		return passengers
+	},
+
 	async findById(id) {
 		const getPassengerById = await prisma.passageiro.findUnique({
 			where: {
@@ -17,6 +28,7 @@ module.exports = {
 
 		return getPassengerById
 	},
+
 	async createPassenger(passenger) {
 		const createdPassenger = await prisma.passageiro.create({
 			data: passenger,
@@ -24,6 +36,7 @@ module.exports = {
 
 		return createdPassenger
 	},
+
 	async updatePassenger(id, data) {
 		const updatedPassenger = await prisma.passageiro.update({
 			where: {
@@ -34,6 +47,7 @@ module.exports = {
 
 		return updatedPassenger
 	},
+
 	async deletePassenger(id) {
 		const deletedPassenger = await prisma.passageiro.delete({
 			where: {
