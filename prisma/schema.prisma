@@ -32,13 +32,13 @@ model Transporte {
     destino            String
     periodo            String
     placa              String   @unique
-    renavam            String
+    renavam            String   @unique
     numPoltronas       Int
     numPoltronasLivres Int
     modelo             String
     marca              String
     Usuario            Usuario? @relation(fields: [usuarioId], references: [id])
-    usuarioId          Int?
+    usuarioId          Int?     @unique
 
     passageiros   Passageiro[]
     listaControle ListaControle[]
@@ -49,11 +49,11 @@ model Transporte {
 model Passageiro {
     id           Int         @id @default(autoincrement())
     assento      String
-    status       Boolean
+    status       String
     Usuario      Usuario?    @relation(fields: [usuarioId], references: [id])
-    usuarioId    Int?
+    usuarioId    Int?        @unique
     Transporte   Transporte? @relation(fields: [transporteId], references: [id])
-    transporteId Int?
+    transporteId Int?        @unique
 
     @@map("PASSAGEIROS")
 }
@@ -64,9 +64,9 @@ model ListaControle {
     embarcado    Boolean
     data         DateTime    @default(now()) @db.Timestamp(0)
     Usuario      Usuario?    @relation(fields: [usuarioId], references: [id])
-    usuarioId    Int?
+    usuarioId    Int?        @unique
     Transporte   Transporte? @relation(fields: [transporteId], references: [id])
-    transporteId Int?
+    transporteId Int?        @unique
 
     @@map("LISTA_CONTROLE")
 }
