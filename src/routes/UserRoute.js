@@ -6,11 +6,13 @@ const { validateUser } = require('../middlewares/validateLogin')
 
 const router = express.Router()
 
+router.get('/users', validateUser, UserController.index)
+router.get('/users/:id', validateUser, UserController.show)
+
 router.post('/users', userValidation, UserController.create)
-router.use(validateUser)
-router.get('/users', UserController.index)
-router.get('/users/:id', UserController.show)
-router.put('/users/:id', UserController.update)
-router.delete('/users/:id', UserController.delete)
+
+router.put('/users/:id', validateUser, UserController.update)
+
+router.delete('/users/:id', validateUser, UserController.delete)
 
 module.exports = router
