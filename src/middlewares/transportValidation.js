@@ -1,4 +1,5 @@
 const Joi = require('joi')
+const transportService = require('../services/TransportService')
 
 module.exports = async (req, res, next) => {
 	const {
@@ -40,15 +41,15 @@ module.exports = async (req, res, next) => {
 			.required(),
 
 		saida: Joi.string()
-			.min(7)
+			.min(3)
 			.required(),
 
 		destino: Joi.string()
-			.min(7)
+			.min(3)
 			.required(),
 
 		periodo: Joi.string()
-			.min(7)
+			.min(3)
 			.required(),
 	})
 
@@ -65,14 +66,27 @@ module.exports = async (req, res, next) => {
 			marca,
 		})
 
+		const licensePlateExists = await transportService.findByLicensePlate(placa)
+
+		const renavamExists = await transportService.findByRenavam(renavam)
+
+		if (licensePlateExists) { throw new Error('Já existe um transporte com esta placa.') }
+
+		if (renavamExists) { throw new Error('Já existe um transporte com este renavam.') }
+
 		next()
 	} catch (error) {
-		let field = error.details[0].path[0]
+		if (error.details && error.details[0].path[0]) {
+			let field = error.details[0].path[0]
 
-		if (field === 'numPoltronas') field = 'número de poltronas'
+			if (field === 'numPoltronas') field = 'número de poltronas'
 
-		if (field === 'numPoltronasLivres') field = 'número de poltronas livres'
+			if (field === 'numPoltronasLivres') field = 'número de poltronas livres'
 
-		res.status(400).send({ message: `Erro ao validar ${field}.` })
+			res.status(400).send({ message: `Erro ao validar ${field}.` })
+			return
+		}
+
+		res.status(400).send({ message: error.message })
 	}
 }

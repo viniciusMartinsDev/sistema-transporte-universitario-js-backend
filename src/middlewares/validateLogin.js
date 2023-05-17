@@ -2,18 +2,21 @@ const jwtService = require('jsonwebtoken')
 
 module.exports = {
 	validateUser(req, res, next) {
-		let { authorization } = req.headers
-		if (authorization === undefined) authorization = ''
-		const token = authorization.split(' ')
-		const privateKey = process.env.JWT_PASS
+		try {
+			const { authorization } = req.headers
 
-		jwtService.verify(token[1], privateKey, (error, userInfo) => {
-			if (error) {
-				res.status(403).send('Não autorizado')
-				return
-			}
-			req.userInfo = userInfo
+			if (authorization === undefined) throw new Error()
+
+			const token = authorization.split(' ')
+			const privateKey = process.env.JWT_PASS
+
+			const decoded = jwtService.verify(token[1], privateKey)
+
+			req.body.usuarioId = decoded.id
+
 			next()
-		})
+		} catch (error) {
+			res.status(401).send({ message: 'Token inválido.' })
+		}
 	},
 }
